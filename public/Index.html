@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pasir Suradita Makmur</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,300;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="#" class="navbar-logo">Pasir<span>SuraditaMakmur</span></a>
+
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang kami</a>
+        <a href="#produk">Produk</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+    <section class="hero" id="home">
+      <main class="content">
+        <h1 id="hero-title"><span>PASIR</span> BERKUALITAS</h1>
+        <p id="hero-desc">
+          Supply & pengiriman pasir se-Jabodetabek dalam satu layanan.
+        </p>
+        <a
+          href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20tertarik%20pesan%20pasir."
+          target="_blank"
+          class="cta"
+        >
+          Pesan Sekarang
+        </a>
+      </main>
+    </section>
+    <section id="about" class="about">
+      <h2><span>Tentang</span> kami</h2>
+      <div class="row">
+        <div class="about-img">
+          <img src="img/hq720.jpg" alt="Tentang Kami" />
+        </div>
+        <div class="content">
+          <h3>Kenapa memilih kami</h3>
+          <p id="about-text">
+            Kami menyediakan supply pasir dengan kualitas stabil dan layanan
+            pengiriman yang efisien. Berpengalaman menangani pesanan untuk
+            proyek rumah tinggal, ruko, dan bangunan komersial.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section id="produk" class="produk">
+      <h2><span>Produk</span> kami</h2>
+      <p>Pilihan pasir dan batu terbaik untuk kebutuhan konstruksi Anda.</p>
+
+      <div class="row" id="list-produk"></div>
+    </section>
+    <section id="contact" class="contact">
+      <h2><span> Kontak </span> kami</h2>
+      <p>Hubungi kami untuk pemesanan atau konsultasi.</p>
+
+      <div class="row">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126907.0809765386!2d106.53696774213038!3d-6.284053229272335!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69fb20a9906e39%3A0x6291a87b55a82206!2sTangerang%20Selatan%2C%20Kota%20Tangerang%20Selatan%2C%20Banten!5e0!3m2!1sid!2sid!4v1675839200000!5m2!1sid!2sid"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="map"
+        ></iframe>
+
+        <form id="form-kontak">
+          <div class="input-group">
+            <i data-feather="user"></i>
+            <input type="text" id="nama" placeholder="nama" required />
+          </div>
+          <div class="input-group">
+            <i data-feather="mail"></i>
+            <input type="text" id="email" placeholder="email" />
+          </div>
+          <div class="input-group">
+            <i data-feather="phone"></i>
+            <input type="text" id="nohp" placeholder="no hp" required />
+          </div>
+          <button type="submit" class="btn">kirim pesan</button>
+        </form>
+      </div>
+    </section>
+    <footer>
+      <div class="sosials">
+        <a href="#"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="twitter"></i></a>
+        <a href="#"><i data-feather="facebook"></i></a>
+      </div>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang kami</a>
+        <a href="#produk">Produk</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="credit">
+        <p>Created by <a href="">M Fiqih Hidayat</a>. | © 2026</p>
+      </div>
+    </footer>
+    <script>
+      feather.replace();
+    </script>
+    <div class="modal" id="modal-detail">
+      <div class="modal-container">
+        <a href="#" class="close-icon" onclick="tutupModal()"
+          ><i data-feather="x"></i
+        ></a>
+        <div class="modal-content">
+          <img src="" alt="Produk" id="modal-img" />
+          <div class="modal-text">
+            <h3 id="modal-title">Nama Produk</h3>
+            <p class="harga" id="modal-price">Rp 0</p>
+            <p class="deskripsi" id="modal-desc">
+              Deskripsi produk akan muncul di sini.
+            </p>
+
+            <a href="#" id="modal-wa" target="_blank" class="cta-modal"
+              >Pesan via WhatsApp</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>

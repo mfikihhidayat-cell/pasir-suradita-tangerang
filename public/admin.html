@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel Super</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+      .card {
+        margin-bottom: 20px;
+        border: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .nav-tabs .nav-link.active {
+        background-color: #ea8b2d;
+        color: white;
+        border-color: #ea8b2d;
+      }
+      .nav-tabs .nav-link {
+        color: #333;
+      }
+      img.preview {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>🔥 Admin Dashboard</h2>
+        <button
+          onclick="window.location.href='index.html'"
+          class="btn btn-outline-danger"
+        >
+          Logout
+        </button>
+      </div>
+
+      <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+        <li class="nav-item">
+          <button
+            class="nav-link active"
+            id="pesan-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#pesan-panel"
+            type="button"
+          >
+            📩 Pesan Masuk
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link"
+            id="produk-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#produk-panel"
+            type="button"
+          >
+            📦 Kelola Produk
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link"
+            id="web-tab"
+            data-bs-toggle="tab"
+            data-bs-target="#web-panel"
+            type="button"
+          >
+            ⚙️ Teks Web
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="pesan-panel">
+          <div class="card p-4">
+            <h4>Daftar Pesan</h4>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Nama</th>
+                  <th>Pesan</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="tabel-pesan"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="produk-panel">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card p-3">
+                <h5 id="form-title">Tambah Produk Baru</h5>
+                <form id="form-produk">
+                  <input type="hidden" id="edit-id" />
+
+                  <div class="mb-2">
+                    <label>Nama Produk</label>
+                    <input
+                      type="text"
+                      id="nama-produk"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-2">
+                    <label>Harga (Contoh: Rp 10.000)</label>
+                    <input
+                      type="text"
+                      id="harga-produk"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+
+                  <div class="mb-2">
+                    <label>Deskripsi Detail</label>
+                    <textarea
+                      id="deskripsi-produk"
+                      class="form-control"
+                      rows="3"
+                      placeholder="Contoh: Pasir halus, isi 7 kubik per truk."
+                    ></textarea>
+                  </div>
+
+                  <div class="mb-3">
+                    <label>Foto Produk</label>
+                    <input type="file" id="foto-produk" class="form-control" />
+                    <small class="text-muted"
+                      >Kosongkan jika tidak ganti foto</small
+                    >
+                  </div>
+
+                  <button type="submit" class="btn btn-success w-100">
+                    Simpan Produk
+                  </button>
+                  <button
+                    type="button"
+                    onclick="resetForm()"
+                    class="btn btn-secondary w-100 mt-2"
+                    style="display: none"
+                    id="btn-batal"
+                  >
+                    Batal Edit
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <div class="card p-3">
+                <table class="table align-middle">
+                  <thead>
+                    <tr>
+                      <th>Foto</th>
+                      <th>Nama</th>
+                      <th>Harga</th>
+                      <th>Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tabel-produk"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="web-panel">
+          <div class="card p-4">
+            <h4>Edit Teks Website</h4>
+            <form id="form-profil">
+              <div class="mb-3">
+                <label>Judul Utama (Hero)</label>
+                <input type="text" id="hero-judul" class="form-control" />
+                <small class="text-muted"
+                  >Tips: Gunakan tag &lt;span&gt; untuk warna oranye. Contoh:
+                  PASIR &lt;span&gt;BERKUALITAS&lt;/span&gt;</small
+                >
+              </div>
+              <div class="mb-3">
+                <label>Sub-Judul (Hero)</label>
+                <textarea
+                  id="hero-deskripsi"
+                  class="form-control"
+                  rows="2"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label>Tentang Kami</label>
+                <textarea
+                  id="tentang-teks"
+                  class="form-control"
+                  rows="4"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Simpan Perubahan
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // --- 1. LOGIKA PESAN ---
+      async function loadPesan() {
+        const res = await fetch("/api/pesan");
+        const data = await res.json();
+        const tabel = document.getElementById("tabel-pesan");
+        tabel.innerHTML = "";
+        data.forEach((p) => {
+          tabel.innerHTML += `
+                <tr>
+                    <td>${new Date(p.tanggal).toLocaleDateString()}</td>
+                    <td>${p.nama} <br> <small>${p.email}</small></td>
+                    <td>${p.nohp}</td>
+                    <td><button onclick="hapusPesan('${
+                      p._id
+                    }')" class="btn btn-sm btn-danger">Hapus</button></td>
+                </tr>
+            `;
+        });
+      }
+      async function hapusPesan(id) {
+        if (confirm("Hapus pesan?"))
+          await fetch(`/api/pesan/${id}`, { method: "DELETE" });
+        loadPesan();
+      }
+
+      // --- 2. LOGIKA PRODUK ---
+      async function loadProduk() {
+        const res = await fetch("/api/produk");
+        const data = await res.json();
+        const tabel = document.getElementById("tabel-produk");
+        tabel.innerHTML = "";
+
+        data.forEach((item) => {
+          // Amankan deskripsi biar gak error kalau ada tanda kutip
+          const amanDesc = item.deskripsi
+            ? item.deskripsi.replace(/'/g, "\\'")
+            : "";
+
+          tabel.innerHTML += `
+                <tr>
+                    <td><img src="${item.gambar}" class="preview"></td>
+                    <td>${item.nama}</td>
+                    <td>${item.harga}</td>
+                    <td>
+                        <button onclick="isiFormEdit('${item._id}', '${item.nama}', '${item.harga}', '${amanDesc}')" class="btn btn-sm btn-warning">Edit</button>
+                        <button onclick="hapusProduk('${item._id}')" class="btn btn-sm btn-danger">Hapus</button>
+                    </td>
+                </tr>
+            `;
+        });
+      }
+
+      document
+        .getElementById("form-produk")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData();
+          formData.append("nama", document.getElementById("nama-produk").value);
+          formData.append(
+            "harga",
+            document.getElementById("harga-produk").value
+          );
+
+          // TAMBAHAN: Masukkan deskripsi ke data yang dikirim
+          formData.append(
+            "deskripsi",
+            document.getElementById("deskripsi-produk").value
+          );
+
+          const fileInput = document.getElementById("foto-produk");
+          if (fileInput.files[0]) formData.append("gambar", fileInput.files[0]);
+
+          const id = document.getElementById("edit-id").value;
+          let url = id ? `/api/produk/${id}` : "/api/produk";
+          let method = id ? "PUT" : "POST";
+
+          const res = await fetch(url, { method: method, body: formData });
+          const hasil = await res.json();
+          alert(hasil.pesan);
+          resetForm();
+          loadProduk();
+        });
+
+      // TAMBAHAN: Parameter deskripsi
+      window.isiFormEdit = (id, nama, harga, deskripsi) => {
+        document.getElementById("edit-id").value = id;
+        document.getElementById("nama-produk").value = nama;
+        document.getElementById("harga-produk").value = harga;
+
+        // Isi textarea deskripsi
+        document.getElementById("deskripsi-produk").value = deskripsi || "";
+
+        document.getElementById("form-title").innerText = "Edit Produk";
+        document.getElementById("btn-batal").style.display = "block";
+      };
+
+      window.resetForm = () => {
+        document.getElementById("form-produk").reset();
+        document.getElementById("edit-id").value = "";
+        document.getElementById("form-title").innerText = "Tambah Produk Baru";
+        document.getElementById("btn-batal").style.display = "none";
+      };
+
+      async function hapusProduk(id) {
+        if (confirm("Hapus produk?")) {
+          await fetch(`/api/produk/${id}`, { method: "DELETE" });
+          loadProduk();
+        }
+      }
+
+      // --- 3. LOGIKA TEKS WEB ---
+      async function loadProfil() {
+        const res = await fetch("/api/profil");
+        const data = await res.json();
+        if (data) {
+          document.getElementById("hero-judul").value = data.judulHero;
+          document.getElementById("hero-deskripsi").value = data.deskripsiHero;
+          document.getElementById("tentang-teks").value = data.tentangKami;
+        }
+      }
+
+      document
+        .getElementById("form-profil")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const data = {
+            judulHero: document.getElementById("hero-judul").value,
+            deskripsiHero: document.getElementById("hero-deskripsi").value,
+            tentangKami: document.getElementById("tentang-teks").value,
+          };
+          const res = await fetch("/api/profil", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          const hasil = await res.json();
+          alert(hasil.pesan);
+        });
+
+      // Jalankan semua load data
+      loadPesan();
+      loadProduk();
+      loadProfil();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "toko_pasir_app",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.1.3",
+    "multer": "^2.0.2"
+  }
+}
